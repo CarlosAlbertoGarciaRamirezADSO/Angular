@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { FormularioRoutingModule } from './formulario-routing.module';
 import { FormularioComponent } from './formulario.component';
-import { AppComponent } from '../app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -11,7 +10,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     FormularioComponent,
-    AppComponent
   ],
   imports: [
     CommonModule,
@@ -20,6 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers:[],
-  bootstrap:[AppComponent]
+  bootstrap:[]
 })
 export class FormularioModule { }
