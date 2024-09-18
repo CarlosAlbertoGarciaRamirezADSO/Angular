@@ -6,10 +6,12 @@ import { text } from 'stream/consumers';
 
 
 
+
 @NgModule({
   declarations: [
     TextoComponent,
-    TextoPipe
+    TextoPipe,
+ 
   ],
   imports: [
     CommonModule

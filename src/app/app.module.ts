@@ -7,6 +7,10 @@ import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
 import { FormularioModule } from './formulario/formulario.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Formulario2Module } from './formulario2/formulario2.module';
+
+
 
 @NgModule({
   declarations: [
@@ -14,13 +18,16 @@ import { FormularioModule } from './formulario/formulario.module';
     ContactComponent,
     HomeComponent,
 
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule,
-    FormularioModule
-    
+    SharedModule, 
+    FormularioModule,
+    ReactiveFormsModule,
+    Formulario2Module
+
   ],
   providers: [
     provideClientHydration()

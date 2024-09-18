@@ -4,21 +4,44 @@
 <form [formGroup]="formularioContacto">
     <div>
         <label for="nombre">Nombre:</label><br>
-        <input type="text" formControlName="nombre"><br><br>
-        <span *ngIf="this.formularioContacto.get('nombre')?.value">existe</span>
-    </div>
-    <div>
+        <input type="text" formControlName="nombre" required><br>
+        <ng-template [ngTemplateOutlet]="errorsTpl" [ngTemplateOutletContext]="{ $implicit: formularioContacto.get('nombre') }"></ng-template>
+    </div><br>
 
+    <div>
         <label for="correo">Correo Electrónico:</label><br>
-        <input type="email" formControlName="mail" ><br><br>
-    </div>
+        <input type="email" formControlName="mail" ><br>
+        <span *ngIf="!this.formularioContacto.get('mail')?.value ">(el email no puede estar vacio)</span>
+        <span *ngIf="formularioContacto.get('mail')?.errors?.['email']" style="color: red;">(Debe ser tipo correo)</span><br>
+    </div><br>
 
     <label for="password">Contraseña:</label><br>
-    <input type="password" formControlName="contraseña" ><br><br>
-
-    <button type="button" [disabled]="!this.formularioContacto.valid" value="cambiarValores" (click)="obtener()">obtener datos</button>
-
+    <input type="password" formControlName="contraseña" ><br><br> 
+    <span *ngIf="!this.formularioContacto.get('contraseña')?.value ">(el email no puede estar vacio)</span>
+    <span *ngIf="formularioContacto.get('contraseña')?.errors?.['maxlength']" style="color: red;">(Debe tener como maximo 16 caracteres)</span><br>
     
+
+    <button type="button" [disabled]="this.formularioContacto.valid" value="cambiarValores" (click)="obtener()">obtener datos</button>
+
+    <ng-template #errorsTpl let-control>
+        <div *ngIf="control.hasError('maxlength')">
+            {{'La cantidad máxima de caracteres es'  }}
+            {{control.errors.maxlength.requiredLength}}
+        </div>
+        <div *ngIf="control.hasError('minlength')">
+            {{'La cantidad mínima de caracteres es'  }}
+            {{control.errors.minlength.requiredLength}}
+        </div>
+        <div *ngIf="control.hasError('required')">
+            {{'Este campo es requerido'  }}
+        </div>
+        <div *ngIf="control.hasError('pattern')">
+            {{'Formato no coincide'  }}
+        </div>
+        <div *ngIf="control.hasError('email')">
+            {{'Formato de email requerido'  }}
+        </div>
+    </ng-template>
 </form>
 
 

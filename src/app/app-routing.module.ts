@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule) },
   {path:'contact',component: ContactComponent},
   { path: 'formulario', loadChildren: () => import('./formulario/formulario.module').then(m => m.FormularioModule) },
+  { path: 'formulario2', loadChildren: () => import('./formulario2/formulario2.module').then(m => m.Formulario2Module) },
 ];
 
 @NgModule({

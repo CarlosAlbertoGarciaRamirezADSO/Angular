@@ -1,0 +1,69 @@
+<form [formGroup]="formulario2">
+    <div>
+      <label for="nombre">Nombre:</label>
+      <input id="nombre" formControlName="nombre" type="text" required>
+      <ng-template [ngTemplateOutlet]="errorsTpl" [ngTemplateOutletContext]="{ $implicit: formulario2.get('nombre') } "></ng-template><br>
+    </div>
+    
+    <div>
+      <label for="apellido">Apellido:</label>
+      <input id="apellido" formControlName="apellido" type="text" required>
+      <ng-template [ngTemplateOutlet]="errorsTpl" [ngTemplateOutletContext]="{ $implicit: formulario2.get('apellido') }"></ng-template><br>
+    </div>
+  
+    <div>
+      <label for="edad">Edad:</label>
+      <input id="edad" formControlName="edad" type="number" required>
+      <ng-template [ngTemplateOutlet]="errorsTpl" [ngTemplateOutletContext]="{ $implicit: formulario2.get('edad') }"></ng-template><br>
+    </div>
+  
+    <div>
+      <label>Sexo:</label>
+      <div>
+        <label>
+          <input type="radio" formControlName="sexo" value="masculino" name="sexo"> Masculino
+        </label>
+        <label>
+          <input type="radio" formControlName="sexo" value="femenino" name="sexo"> Femenino
+          <ng-template [ngTemplateOutlet]="errorsTpl" [ngTemplateOutletContext]="{ $implicit: formulario2.get('sexo'), name: 'sexo' }"></ng-template>
+        </label><br>
+      </div>
+    </div>
+  
+    <div>
+      <label for="ciudad">Ciudad:</label>
+      <select id="ciudad" formControlName="ciudad" required>
+        <option value="" disabled selected>Selecciona una ciudad</option>
+        <option value="florida">Florida</option>
+        <option value="piedecuesta">Piedecuesta</option>
+        <!-- <ng-template [ngTemplateOutlet]="errorsTpl" [ngTemplateOutletContext]="{ $implicit: formulario2.get('ciudad') }"></ng-template> -->
+      </select>
+    </div>
+  
+    <button type="button" (click)="obtenerdatos()">Enviar</button>
+
+
+    <ng-template #errorsTpl let-control let-name="name">
+      <div *ngIf="control.hasError('maxlength')">
+          {{'La cantidad máxima de caracteres es' }}
+          {{control.errors.maxlength.requiredLength}}
+      </div>
+      <div *ngIf="control.hasError('minlength')">
+          {{'La cantidad mínima de caracteres es' }}
+          {{control.errors.minlength.requiredLength}}
+      </div>
+      <div *ngIf="control.hasError('required')">
+          {{'Este campo es requerido :'  + name }}
+      </div>
+      <div *ngIf="control.hasError('pattern')">
+          {{'Formato no coincide' }}
+      </div>
+      <div *ngIf="control.hasError('email')">
+          {{'Formato de email requerido' }}
+      </div>
+  </ng-template>
+    
+
+
+  </form>
+  

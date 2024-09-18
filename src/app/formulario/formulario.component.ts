@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { error, log } from 'console';
 
 @Component({
   selector: 'app-formulario',
@@ -10,14 +11,14 @@ export class FormularioComponent implements OnInit {
   
   ngOnInit(): void {
    console.log("hola mundo");
-   this.formularioContacto.controls["nombre"].setValue("erley");
   }
 
   public obtener():void{
     console.log(this.formularioContacto.valid);
-    console.log(this.formularioContacto);
+    console.log(this.formularioContacto.controls);
+    console.log(this.formularioContacto.controls.mail.errors);
 
-    if (this.formularioContacto.valid)
+    if (this.formularioContacto.valid )
       console.log(this.formularioContacto.value);
     else
       console.log("no es valido");
@@ -27,9 +28,10 @@ export class FormularioComponent implements OnInit {
   resultado!: string;
 
   formularioContacto = new FormGroup({
-    nombre: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    nombre: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(20)]),
     mail: new FormControl('', [Validators.required, Validators.email]),
-    contraseña: new FormControl('', [Validators.required, Validators.maxLength(500)])
+    contraseña: new FormControl('', [Validators.required, Validators.maxLength(16)])
+    
   });
 
 
